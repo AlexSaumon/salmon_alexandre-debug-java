@@ -20,10 +20,13 @@ public class AnalyticsCounter {
         Counter counter = new Counter();
         Map<String, Integer> counts = counter.countSymptoms(symptoms);
 
+        SortSymptoms sorter = new SortSymptoms();
+        Map<String, Integer> sortedSymptoms = sorter.sortSymptoms(counts);
+
         // 3. Écrire dans un fichier
         WriteSymptomDataToFile writer = new WriteSymptomDataToFile();
-        writer.write("result.txt", counts);
+        writer.write("result.txt", sortedSymptoms);
 
-        System.out.println("✔ Fichier result.txt créé !");
+        System.out.println("result.txt créé !");
     }
 }
