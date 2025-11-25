@@ -1,32 +1,27 @@
 package com.hemebiotech.analytics;
 
-import DataReadWrite.ReadSymptomDataFromFile;
-import DataReadWrite.WriteSymptomDataToFile;
+import DataReadWrite.ISymptomReader;
+import DataReadWrite.ISymptomWriter;
 
 import java.util.List;
 import java.util.Map;
 
 public class AnalyticsCounter {
 
-    public static void main(String[] args) {
+    private final ISymptomReader reader;
+    private final ISymptomWriter writer;
+    private final Counter counter = new Counter();
+    private final SortSymptoms sorter = new SortSymptoms();
 
-        // 1. Lire les symptômes
-        ReadSymptomDataFromFile reader =
-                new ReadSymptomDataFromFile("F:/Java/salmon_alaxandre-debug-java/Project02Eclipse/src/symptoms.txt");
+    public AnalyticsCounter(ISymptomReader reader, ISymptomWriter writer) {
+        this.reader = reader;
+        this.writer = writer;
+    }
 
+    public void run(String outputFile) {
         List<String> symptoms = reader.GetSymptoms();
-
-        // 2. Compter
-        Counter counter = new Counter();
-        Map<String, Integer> counts = counter.countSymptoms(symptoms);
-
-        SortSymptoms sorter = new SortSymptoms();
-        Map<String, Integer> sortedSymptoms = sorter.sortSymptoms(counts);
-
-        // 3. Écrire dans un fichier
-        WriteSymptomDataToFile writer = new WriteSymptomDataToFile();
-        writer.write("result.txt", sortedSymptoms);
-
-        System.out.println("result.txt créé !");
+        Map<String, Integer> counted = counter.countSymptoms(symptoms);
+        Map<String, Integer> sorted = sorter.sortSymptoms(counted);
+        writer.write(outputFile, sorted);
     }
 }
