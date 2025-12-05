@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * Simple brute force implementation
- *
+ *  Code servant uniquement à extraire les données du fichier
  */
 public class ReadSymptomDataFromFile implements ISymptomReader {
 
@@ -26,25 +26,29 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 
     @Override
     public List<String> GetSymptoms() {
-        ArrayList<String> result = new ArrayList<>();
 
+        //liste de symptomes retourner
+        ArrayList<String> result = new ArrayList<>();
+        //lecture du fichier
         InputStream is = AnalyticsCounter.class.getResourceAsStream("/symptoms.txt");
 
+        //erreur si il n'y a pas de symptoms.txt
         if (is == null) {
             throw new RuntimeException("File symptoms.txt NOT FOUND in classpath!");
         }
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
-
+            //lecture ligne par ligne
             String line;
             while ((line = reader.readLine()) != null) {
+                //ajout de la ligne à la liste
                 result.add(line);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        //renvoie de la liste complète non trier
         return result;
     }
 

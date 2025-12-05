@@ -8,15 +8,18 @@ import SymptomWriter.WriteSymptomDataToFile;
 public class Main {
 
     public static void main(String[] args) {
-
+        //Objet de lecture des symptomes. On peut changer ici l'origine du fichier
         ISymptomReader reader =
-                new ReadSymptomDataFromFile("F:/Java/salmon_alaxandre-debug-java/Project02Eclipse/src/symptoms.txt");
+                new ReadSymptomDataFromFile("/src/symptoms.txt");
 
+        //Objet d'écriture de la listes des symptomes
         ISymptomWriter writer =
                 new WriteSymptomDataToFile();
 
+        //Injection des objets pour assembler les programme
         AnalyticsCounter app = new AnalyticsCounter(reader, writer);
 
+        //Lancement du programme
         app.listSymptoms("result.txt");
 
         System.out.println("✔ Programme terminé !");
