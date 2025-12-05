@@ -1,4 +1,4 @@
-package DataReadWrite;
+package SymptomeReader;
 
 import java.util.List;
 

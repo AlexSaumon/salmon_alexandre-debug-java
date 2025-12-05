@@ -1,4 +1,4 @@
-package DataReadWrite;
+package SymptomWriter;
 
 import java.io.FileWriter;
 import java.io.IOException;

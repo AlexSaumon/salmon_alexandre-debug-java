@@ -1,4 +1,4 @@
-package com.hemebiotech.analytics;
+package SymptomCounter;
 
 
 import java.util.HashMap;

@@ -1,9 +1,9 @@
 package com.hemebiotech.analytics;
 
-import DataReadWrite.ISymptomReader;
-import DataReadWrite.ISymptomWriter;
-import DataReadWrite.ReadSymptomDataFromFile;
-import DataReadWrite.WriteSymptomDataToFile;
+import SymptomeReader.ISymptomReader;
+import SymptomWriter.ISymptomWriter;
+import SymptomeReader.ReadSymptomDataFromFile;
+import SymptomWriter.WriteSymptomDataToFile;
 
 public class Main {
 
@@ -17,7 +17,7 @@ public class Main {
 
         AnalyticsCounter app = new AnalyticsCounter(reader, writer);
 
-        app.run("result.txt");
+        app.listSymptoms("result.txt");
 
         System.out.println("✔ Programme terminé !");
     }

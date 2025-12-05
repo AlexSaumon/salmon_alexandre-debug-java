@@ -1,6 +1,5 @@
-package DataReadWrite;
+package SymptomWriter;
 
-import java.util.List;
 import java.util.Map;
 
 public interface ISymptomWriter {
